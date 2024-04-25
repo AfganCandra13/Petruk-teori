@@ -1,0 +1,25 @@
+    for (int i = 0; i < cols; ++i) {
+        string colStr = "";
+        for (int j = 0; j < rows; ++j) {
+            colStr += matrix[j][i];
+        }
+        if (colStr.find(word) != string::npos) {
+            return true;
+        }
+    }
+
+
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            string diagStr = "";
+            for (int k = 0; i + k < rows && j + k < cols; ++k) {
+                diagStr += matrix[i + k][j + k];
+            }
+            if (diagStr.find(word) != string::npos) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
