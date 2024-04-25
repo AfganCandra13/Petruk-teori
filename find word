@@ -39,3 +39,31 @@ bool searchWord(vector<string>& matrix, string word) {
 
     return false;
 }
+
+int main() {
+    int N;
+    cin >> N;
+
+    vector<string> words(N);
+    for (int i = 0; i < N; ++i) {
+        cin >> words[i];
+    }
+
+    vector<string> matrix = {
+        "aafyghkjylshagbamaysnamah",
+       "Fahysnamuanlalahsnskzuhz",
+        "bajyskamaranamalsjudbsmak",
+        "Jsusmsjshockeyjajkaiahanajuaha",
+         "Majusnsajausjsnbsbsns"
+    };
+
+    for (const auto& word : words) {
+        if (searchWord(matrix, word)) {
+            cout << "Ada" << endl;
+        } else {
+            cout << "Tidak Ada" << endl;
+        }
+    }
+
+    return 0;
+}
