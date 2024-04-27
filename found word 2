@@ -1,0 +1,86 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+bool cariHorizontal(const vector<vector<char>>& matriks, const string& kata) {
+    int baris = matriks.size();
+    int kolom = matriks[0].size();
+
+    for (int x = 0; x < baris; ++x) {
+        for (int y = 0; y <= kolom - kata.length(); ++y) {
+            bool found = true;
+            for (int z = 0; z < kata.length(); ++z) {
+                if (matriks[x][y + z] != kata[z]) {
+                    found = false;
+                    break;
+                }if (matriks[x][y + z] != kata[z]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool cariVertikal(const vector<vector<char>>& matriks, const string& kata) {
+    int baris = matriks.size();
+    int kolom = matriks[0].size();
+    
+    for (int y = 0; y < kolom; ++y) {
+        for (int x = 0; x<= baris - kata.length(); ++x) {
+            bool found = true;
+            for (int z = 0; z < kata.length(); ++z) {
+                if (matriks[x + z][y] != kata[z]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+    }
+    
+    for (int y = 0; y < kolom; ++y) {
+        for (int x = baris - 1; x >= kata.length() - 1; --x) {
+            bool found = true;
+            for (int z = 0; z < kata.length(); ++z) {
+                if (matriks[x - z][y] != kata[z]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool cariDiagonalKananBawah(const vector<vector<char>>& matriks, const string& kata) {
+    int baris = matriks.size();
+    int kolom = matriks[0].size();
+
+    for (int x = 0; x <= baris - kata.length(); ++x) {
+        for (int y = 0; y <= kolom - kata.length(); ++y) {
+            bool found = true;
+            for (int z = 0; z < kata.length(); ++z) {
+                if (matriks[x + z][y + z] != kata[z]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
