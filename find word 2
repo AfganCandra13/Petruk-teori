@@ -84,3 +84,74 @@ bool cariDiagonalKananBawah(const vector<vector<char>>& matriks, const string& k
     }
     return false;
 }
+
+bool cariDiagonalKananAtas(const vector<vector<char>>& matriks, const string& kata) {
+    int baris = matriks.size();
+    int kolom = matriks[0].size();
+
+    for (int x = kata.length() - 1; x < baris; ++x) {
+        for (int y = kata.length() - 1; y< kolom; ++y) {
+            bool found = true;
+            for (int z = 0; z < kata.length(); ++z) {
+                if (x - z < 0 || y - z < 0 || matriks[x - z][y - z] != kata[z]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool cariDiagonalKiriBawah(const vector<vector<char>>& matriks, const string& kata) {
+    int baris = matriks.size();
+    int kolom = matriks[0].size();
+
+    for (int x = 0; x <= baris - kata.length(); ++x) {
+        for (int y = kata.length() - 1; y < kolom; ++y) {
+            bool found = true;
+            for (int z = 0; z < kata.length(); ++z) {
+                if (x + z >= baris || y - z < 0 || matriks[x + z][y - z] != kata[z]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool cariDiagonalKiriAtas(const vector<vector<char>>& matriks, const string& kata) {
+    int baris = matriks.size();
+    int kolom = matriks[0].size();
+
+    for (int x = kata.length() - 1; x < baris; ++x) {
+        for (int y = 0; y <= kolom - kata.length(); ++y) {
+            bool found = true;
+            for (int z = 0; z < kata.length(); ++z) {
+                if (x - z < 0 || matriks[x - z][y + z] != kata[z]) {
+                    found = false;
+                    break;
+                }
+            }
+            if (found) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+bool findWord(const vector<vector<char>>& matriks, const string& kata) {
+    if (cariHorizontal(matriks, kata) || cariVertikal(matriks, kata) || cariDiagonalKananBawah(matriks, kata) || cariDiagonalKiriBawah(matriks, kata) || cariDiagonalKananAtas(matriks, kata) || cariDiagonalKiriAtas(matriks, kata))
+        return true;
+    else
+        return false;
+}
