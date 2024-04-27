@@ -190,6 +190,7 @@ int main() {
     for (int x = 0; x < jumlahKata; ++x) {
         cin >> kata;
         {
+        transform(kata.begin(), kata.end(), kata.begin(), ::toupper); 
     
         if (findWord(matriks, kata))
             cout << "Ada" << endl;
